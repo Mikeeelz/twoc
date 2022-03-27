@@ -1,0 +1,25 @@
+{% extends 'template/layout.html.twig' %}
+
+{% block content %}
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="left-sidebar">
+            {% include 'block/category-list.html.twig' %}
+            {% include 'block/brand-list.html.twig' %}
+          </div>
+        </div>
+
+        <div class="col-sm-9 padding-right">
+          <div class="features_items">
+            <h2 class="title text-center">{{ brand.title }}</h2>
+            {% for product in products %}
+              {% include 'block/product.html.twig' %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

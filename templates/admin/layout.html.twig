@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{{ title is defined ? title : 'Admin' }}</title>
+
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+  <link rel="stylesheet" href="/admin/admin.css">
+  <link rel="stylesheet" href="/admin/plugins/iCheck/all.css">
+  <link rel="stylesheet" href="/admin/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<body class="hold-transition skin-black sidebar-mini">
+<div class="wrapper">
+
+  <header class="main-header">
+    <a class="logo" href="/admin">TWOC</a>
+
+    <nav class="navbar navbar-static-top">
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+
+      {% if back_link is defined %}
+      <div class="navbar-custom-menu" style="float: left">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="{{ back_link }}" class="dropdown-toggle" data-toggle="dropdown" style="border-left: none">
+              назад к списку
+            </a>
+          </li>
+        </ul>
+      </div>
+      {% endif %}
+    </nav>
+  </header>
+
+  <aside class="main-sidebar">
+    {% include 'admin/blocks/menu.html.twig' %}
+  </aside>
+
+  <div class="content-wrapper">
+    <section class="content-header">
+
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <span class="navbar-brand">{{ title is defined ? title : '' }}</span>
+          </div>
+
+          <div class="nav navbar-nav navbar-right">
+            {% block header %}{% endblock %}
+          </div>
+        </div>
+      </nav>
+    </section>
+
+    <section class="content">
+      <div class="row">
+        {% block content %}{% endblock %}
+      </div>
+    </section>
+  </div>
+</div>
+
+<script src="/admin/plugins/jquery/dist/jquery.min.js"></script>
+<script src="/admin/adminlte.min.js"></script>
+<script src="/admin/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="/admin/plugins/ckeditor/ckeditor.js"></script>
+
+<script>
+  $(function () {
+    $('input[type="checkbox"].icheck, input[type="radio"].icheck').iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square-blue'
+    })
+  })
+
+  $('.datepicker').datepicker({
+    autoclose: true,
+    format: 'dd.mm.yyyy',
+  })
+
+  if (document.getElementById('ck_editor')) {
+    $(function () {
+      CKEDITOR.replace('ck_editor')
+    })
+  }
+
+  if (document.getElementById('ck_editor_additional')) {
+    $(function () {
+      CKEDITOR.replace('ck_editor_additional')
+    })
+  }
+</script>
+
+{% block js %}{% endblock %}
+</body>
+</html>

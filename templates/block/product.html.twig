@@ -1,0 +1,15 @@
+<div class="col-sm-4">
+  <div class="product-image-wrapper">
+    <div class="single-products">
+      <div class="productinfo text-center">
+        <img src="{{ product.image }}" alt=""/>
+        <h2>{{ product.price|number_format(0, '', ' ') }} руб.</h2>
+        <p>{{ product.title }}</p>
+        <button class="btn btn-default add-to-cart" data-product-id="{{ product.id }}">
+          <i class="fa fa-shopping-cart"></i>
+          В корзину
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

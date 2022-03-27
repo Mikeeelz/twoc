@@ -1,0 +1,10 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% set title = 'Редактирование производителя: ' ~ brand.title %}
+{% set back_link = '/admin/brand' %}
+
+{% block content %}
+  {% include 'admin/catalog/brand/form.html.twig' with {
+    url: '/admin/brand/update/' ~ brand.id
+  } %}
+{% endblock %}

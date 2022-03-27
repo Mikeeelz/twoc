@@ -1,0 +1,10 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% set title = 'Добавление статьи' %}
+{% set back_link = 'app.admin.content.article.list' %}
+
+{% block content %}
+  {% include 'admin/content/article/form.html.twig' with {
+    url: path('app.admin.content.article.save'),
+  } %}
+{% endblock %}

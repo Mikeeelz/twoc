@@ -1,0 +1,8 @@
+{% set title = 'Список категорий' %}
+
+{% include 'admin/list-template.html.twig' with {
+  link: '/admin/category',
+  head_template: 'admin/catalog/category/list-head.html.twig',
+  item_template: 'admin/catalog/category/list-item.html.twig',
+  create_link: '/admin/category/create',
+} %}

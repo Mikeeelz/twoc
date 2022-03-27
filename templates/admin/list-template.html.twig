@@ -1,0 +1,72 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block header %}
+  {% if create_link is defined %}
+    <div class="navbar-form">
+      <a href="{{ create_link }}" class="btn btn-success">Добавить</a>
+    </div>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <div class="col-md-12">
+    <div class="box box-primary">
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-bordered table-striped table-hover">
+          <thead>
+           {% include head_template %}
+          </thead>
+          <tbody>
+          {% for item in result %}
+             {% include item_template %}
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      {# {% set pages = (result.count / search.limit)| round(0, 'ceil') %} #}
+      {# {% set page = search.page %} #}
+
+      {# <div class="box-footer"> #}
+      {# <div class="form-inline clearfix"> #}
+      {# <div class="pull-left"> #}
+      {# </div> #}
+      {# <div class="pull-right"> #}
+      {# {{ result.count }} всего #}
+      {# </div> #}
+      {# </div> #}
+
+      {# {% set start = page < 11 ? 1 : page - 10 %} #}
+      {# {% if (pages - start) < 21 and pages > 21 %} #}
+      {# {% set start = pages - 20 %} #}
+      {# {% endif %} #}
+
+      {# {% set end = start + 20 > pages ? pages : start + 20 %} #}
+
+      {# {% if pages > 1 %} #}
+      {# <hr> #}
+
+      {# <div class="text-center"> #}
+      {# <ul class="pagination"> #}
+      {# {% if page != 1 %} #}
+      {# <li><a href="{{ path(link, {page: 1, filters: search.filters}) }}">«</a></li> #}
+      {# <li><a href="{{ path(link, {page: page - 1, filters: search.filters}) }}">‹</a></li> #}
+      {# {% endif %} #}
+
+      {# {% for i in start .. end %} #}
+      {# <li class="{{ i == page ? 'active' : '' }}"> #}
+      {# <a href="{{ path(link, {page: i, filters: search.filters}) }}">{{ i }}</a> #}
+      {# </li> #}
+      {# {% endfor %} #}
+
+      {# {% if page != pages %} #}
+      {# <li><a href="{{ path(link, {page: page + 1, filters: search.filters}) }}">›</a></li> #}
+      {# <li><a href="{{ path(link, {page: pages, filters: search.filters}) }}">»</a></li> #}
+      {# {% endif %} #}
+      {# </ul> #}
+      {# </div> #}
+      {# {% endif %} #}
+    </div>
+  </div>
+  </div>
+{% endblock %}

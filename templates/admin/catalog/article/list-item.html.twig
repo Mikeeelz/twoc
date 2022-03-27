@@ -1,0 +1,22 @@
+<tr>
+  <td>{{ item.id }}</td>
+  <td>
+    {% if item.published %}
+      <span class="label label-success">Да</span>
+    {% else %}
+      <span class="label label-danger">Нет</span>
+    {% endif %}
+  </td>
+  <td>{{ item.title }}</td>
+  <td>{{ item.slug }}</td>
+  <td>{{ item.tags|map(tag => tag.title)|join(', ') }}</td>
+  <td>{{ item.createdAt|date('d.m.Y H:i') }}</td>
+  <td>{{ item.updatedAt|date('d.m.Y H:i') }}</td>
+  <td>
+    <a href="{{ path('app.admin.content.article.edit', {article: item.id}) }}" class="btn btn-sm btn-default edit_link">
+      <i class="fa fa-pencil" aria-hidden="true"></i>
+      Редактировать
+    </a>
+  </td>
+
+</tr>

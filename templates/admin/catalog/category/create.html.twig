@@ -1,0 +1,10 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% set title = 'Добавление категории' %}
+{% set back_link = '/admin/category' %}
+
+{% block content %}
+  {% include 'admin/catalog/category/form.html.twig' with {
+    url: '/admin/category/save',
+  } %}
+{% endblock %}

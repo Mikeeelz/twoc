@@ -1,0 +1,10 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% set title = 'Добавление товара' %}
+{% set back_link = '/admin/product' %}
+
+{% block content %}
+  {% include 'admin/catalog/product/form.html.twig' with {
+    url: '/admin/product/save',
+  } %}
+{% endblock %}

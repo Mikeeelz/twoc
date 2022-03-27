@@ -1,0 +1,81 @@
+{% set items = [
+  {
+    title: 'Заказы',
+    items: [
+    {title: 'Заказ', url: '/admin/order'},
+  ],
+  },
+] %}
+
+
+<section class="sidebar">
+  <ul class="sidebar-menu" data-widget="tree">
+    {% for item in items %}
+      {% set active = false %}
+      {% for subItem in item.items %}
+        {% if app.request.attributes.get('_route') == subItem.url or back_link is defined and back_link == subItem.url %}
+          {% set active = true %}
+        {% endif %}
+      {% endfor %}
+
+      <li class="treeview {{ active ? 'menu-open' : '' }}">
+        <a href="#">
+          <i class="fa fa-folder"></i><span>{{ item.title }}</span>
+          <span class="pull-right-container"><i class="fa pull-right fa-angle-left"></i></span>
+        </a>
+        <ul class="treeview-menu menu_level_1" style="display: {{ active ? 'block' : 'none' }};">
+          {% for subItem in item.items %}
+            <li class="{{ app.request.attributes.get('_route') == subItem.url ? 'active' : '' }}">
+              <a href="{{ subItem.url is not empty ? subItem.url : '#' }}">
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i>{{ subItem.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+  {% set items = [
+    {
+      title: 'Каталог',
+      items: [
+      {title: 'Категории', url: '/admin/category'},
+      {title: 'Производители', url: '/admin/brand'},
+      {title: 'Товары', url: '/admin/product'},
+    ],
+    },
+  ] %}
+
+
+  <section class="sidebar">
+    <ul class="sidebar-menu" data-widget="tree">
+      {% for item in items %}
+        {% set active = false %}
+        {% for subItem in item.items %}
+          {% if app.request.attributes.get('_route') == subItem.url or back_link is defined and back_link == subItem.url %}
+            {% set active = true %}
+          {% endif %}
+        {% endfor %}
+
+        <li class="treeview {{ active ? 'menu-open' : '' }}">
+          <a href="#">
+            <i class="fa fa-folder"></i><span>{{ item.title }}</span>
+            <span class="pull-right-container"><i class="fa pull-right fa-angle-left"></i></span>
+          </a>
+          <ul class="treeview-menu menu_level_1" style="display: {{ active ? 'block' : 'none' }};">
+            {% for subItem in item.items %}
+              <li class="{{ app.request.attributes.get('_route') == subItem.url ? 'active' : '' }}">
+                <a href="{{ subItem.url is not empty ? subItem.url : '#' }}">
+                  <i class="fa fa-angle-double-right" aria-hidden="true"></i>{{ subItem.title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </li>
+      {% endfor %}
+    </ul>
+
+  <p class="text-center small" style="border-top: 1px solid #444444; padding-top: 10px">
+  </p>
+</section>

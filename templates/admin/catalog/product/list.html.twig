@@ -1,0 +1,8 @@
+{% set title = 'Список товаров' %}
+
+{% include 'admin/list-template.html.twig' with {
+  link: '/admin/product',
+  head_template: 'admin/catalog/product/list-head.html.twig',
+  item_template: 'admin/catalog/product/list-item.html.twig',
+  create_link: '/admin/product/create',
+} %}
