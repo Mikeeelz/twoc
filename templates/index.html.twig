@@ -17,12 +17,12 @@
               {% for key, banner in banners %}
                 <div class="item {{ key == 0 ? 'active' : '' }}">
                   <div class="col-sm-6">
-                    <h1>{{ banner['title'] | raw }}</h1>
-                    <h2>{{ banner['subtitle'] | raw }}</h2>
-                    <p>{{ banner['description'] | raw }}</p>
+                    <h1>{{ banner.title | raw }}</h1>
+                    <h2>{{ banner.subtitle | raw }}</h2>
+                    <p>{{ banner.description | raw }}</p>
                   </div>
                   <div class="col-sm-6">
-                    <img src="{{ banner['image'] }}" class="girl img-responsive" alt=""/>
+                    <img src="{{ banner.image }}" class="girl img-responsive" alt=""/>
                   </div>
                 </div>
               {% endfor %}
