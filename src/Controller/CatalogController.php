@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Repository\BannerRepository;
 use App\Repository\BrandRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
@@ -10,34 +9,38 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class IndexController extends AbstractController
+class CatalogController extends AbstractController
 {
-    private BannerRepository $bannerRepository;
-    private BrandRepository $brandRepository;
     private CategoryRepository $categoryRepository;
+    private BrandRepository $brandRepository;
     private ProductRepository $productRepository;
 
     public function __construct(
-        BannerRepository $bannerRepository,
-        BrandRepository $brandRepository,
         CategoryRepository $categoryRepository,
+        BrandRepository $brandRepository,
         ProductRepository $productRepository,
-    )
-    {
-        $this->bannerRepository = $bannerRepository;
-        $this->brandRepository = $brandRepository;
+    ) {
         $this->categoryRepository = $categoryRepository;
+        $this->brandRepository = $brandRepository;
         $this->productRepository = $productRepository;
     }
 
-    #[Route("/")]
-    public function index(): Response
+    #[Route("/category/{id}")]
+    public function category(int $id): Response
     {
-        return $this->render('index.html.twig', [
-            'banners' => $this->bannerRepository->findAll(),
+        $category = $this->categoryRepository->find($id);
+
+        if ($category === null) {
+            throw $this->createNotFoundException();
+        }
+
+        return $this->render('category.html.twig', [
+            'category' => $category,
             'categories' => $this->categoryRepository->findAll(),
             'brands' => $this->brandRepository->findAll(),
-            'products' => $this->productRepository->findAll(),
+            'products' => $this->productRepository->findBy(['category' => $category]),
         ]);
     }
+
+    // todo brands
 }
