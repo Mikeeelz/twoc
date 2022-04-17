@@ -42,5 +42,20 @@ class CatalogController extends AbstractController
         ]);
     }
 
-    // todo brands
+    #[Route("/brand/{id}")]
+    public function brand(int $id): Response
+    {
+        $brand = $this->brandRepository->find($id);
+
+        if ($brand === null) {
+            throw $this->createNotFoundException();
+        }
+
+        return $this->render('brand.html.twig', [
+            'brand' => $brand,
+            'categories' => $this->categoryRepository->findAll(),
+            'brands' => $this->brandRepository->findAll(),
+            'products' => $this->productRepository->findBy(['brand' => $brand]),
+        ]);
+    }
 }

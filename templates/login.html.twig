@@ -3,12 +3,16 @@
 {% block content %}
   <section id="form">
     <div class="container">
-      {% if get['success_register'] is defined %}
+      {% if errorRegister %}
+        <div class="row text-center">
+          Ошибка при регистрации
+        </div>
+      {% elseif successRegister %}
         <div class="row text-center">
           Вы успешно зарегистрированы
         </div>
       {% endif %}
-      {% if get['error_auth'] is defined %}
+      {% if loginError %}
         <div class="row text-center">
           Неправельная почта или пароль
         </div>
