@@ -15,7 +15,7 @@ class LoginController extends AbstractController
         return $this->render('login.html.twig', [
             'successRegister' => $request->query->has('success-register'),
             'errorRegister' => $request->query->has('error-register'),
-            'loginError' => false,
+            'loginError' => $request->query->has('error-login'),
         ]);
     }
 }

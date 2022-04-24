@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
+use RuntimeException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,6 +24,18 @@ class AuthController extends AbstractController
     ) {
         $this->hasher = $hasher;
         $this->entityManager = $entityManager;
+    }
+
+    #[Route("/login", name: 'app_auth', methods: 'POST')]
+    public function auth(): Response
+    {
+        throw new RuntimeException('this route is not callable. fix your auth manager');
+    }
+
+    #[Route("/logout", name: 'app_logout', methods: 'GET')]
+    public function logout(): Response
+    {
+        throw new RuntimeException('this route is not callable. fix your auth manager');
     }
 
     #[Route("/register", methods: 'POST')]

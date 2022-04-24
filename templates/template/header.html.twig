@@ -16,11 +16,11 @@
 {#                  Корзина (<span class="cart-counter">{{ getCartCount() }}</span>)#} todo
                 </a>
               </li>
-{#              {% if isAuth() %}#} todo
-{#                <li><a href="/logout"><i class="fa fa-unlock"></i> Выйти</a></li>#}
-{#              {% else %}#}
+              {% if app.user is not null %}
+                <li><a href="/logout"><i class="fa fa-unlock"></i> Выйти</a></li>
+              {% else %}
                 <li><a href="/login"><i class="fa fa-lock"></i> Вход</a></li>
-{#              {% endif %}#}
+              {% endif %}
             </ul>
           </div>
         </div>

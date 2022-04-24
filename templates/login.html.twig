@@ -14,14 +14,14 @@
       {% endif %}
       {% if loginError %}
         <div class="row text-center">
-          Неправельная почта или пароль
+          Неправильная почта или пароль
         </div>
       {% endif %}
       <div class="row">
         <div class="col-sm-4 col-sm-offset-1">
           <div class="login-form">
             <h2>Авторизация</h2>
-            <form action="/auth" method="post">
+            <form action="/login" method="post">
               <input type="email" placeholder="Почта" name="email" required/>
               <input type="password" placeholder="Пароль" name="password" required/>
               <button type="submit" class="btn btn-default">Войти</button>
