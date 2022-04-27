@@ -16,7 +16,7 @@
           </tr>
           </thead>
           <tbody>
-          {% for item in items %}
+          {% for item in cart.items %}
             <tr>
               <td class="cart_product">
                 <a href=""><img src="{{ item.product.image }}" alt="" width="120"></a>
@@ -61,7 +61,7 @@
         <div class="col-sm-6">
           <div class="shopper-info">
             <form action="/order/create" method="post">
-              {% if not isAuth() %}
+              {% if app.user is null %}
                 <input name="name" type="text" placeholder="Имя">
                 <input name="email" type="text" placeholder="Почта">
               {% endif %}
@@ -73,7 +73,7 @@
         <div class="col-sm-6">
           <div class="total_area">
             <ul>
-              <li>Сумма заказа <span>{{ price|number_format(0, '', ' ') }} руб.</span></li>
+              <li>Сумма заказа <span>{{ cart.price|number_format(0, '', ' ') }} руб.</span></li>
             </ul>
           </div>
         </div>
