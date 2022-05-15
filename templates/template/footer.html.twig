@@ -9,18 +9,18 @@
           </div>
         </div>
         <div class="col-sm-7">
-{#          {% for consultant in getConsultants() %}#} todo
-{#            <div class="col-sm-3">#}
-{#              <div class="video-gallery text-center">#}
-{#                <a href="#">#}
-{#                  <div class="iframe-img">#}
-{#                    <img src="{{ consultant['image'] }}" alt="" />#}
-{#                  </div>#}
-{#                </a>#}
-{#                <p>{{ consultant['name'] }}</p>#}
-{#              </div>#}
-{#            </div>#}
-{#          {% endfor %}#}
+          {% for consultants in getConsultants() %}
+            <div class="col-sm-3">
+              <div class="video-gallery text-center">
+                <a href="#">
+                  <div class="iframe-img">
+                    <img src="{{ consultants.image }}" alt="" />
+                  </div>
+                </a>
+                <p>{{ consultants.title }}</p>
+              </div>
+            </div>
+          {% endfor %}
         </div>
         <div class="col-sm-3">
           <div class="address">
