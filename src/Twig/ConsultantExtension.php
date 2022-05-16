@@ -20,11 +20,11 @@ class ConsultantExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('getConsultants', [$this, 'findAll']),
+            new TwigFunction('getConsultants', [$this, 'getConsultants']),
         ];
     }
 
-    public function findAll(): array
+    public function getConsultants(): array
     {
         return $this->consultantsRepository->findAll();
     }
