@@ -6,6 +6,7 @@ use App\Service\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -18,10 +19,11 @@ class CartController extends AbstractController
     }
 
     #[Route('/cart')]
-    public function index(): Response
+    public function index(Request $request): Response
     {
         return $this->render('cart.html.twig', [
             'cart' => $this->cartService->getCart(),
+            'errorRegister' => $request->query->has('error-register'),
         ]);
     }
 

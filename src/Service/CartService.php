@@ -43,6 +43,11 @@ class CartService
         $this->session->set('cart', $cart->format());
     }
 
+    public function clearCart(): void
+    {
+        $this->session->remove('cart');
+    }
+
     public function addProduct(int $productId): void
     {
         $product = $this->productRepository->find($productId);

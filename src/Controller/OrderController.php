@@ -4,8 +4,12 @@ namespace App\Controller;
 
 use App\Entity\Order;
 use App\Entity\OrderItem;
+use App\Entity\User;
+use Exception;
+use RuntimeException;
 use App\Service\CartService;
 use Doctrine\ORM\EntityManagerInterface;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,9 +22,10 @@ class OrderController extends AbstractController
     private EntityManagerInterface $entityManager;
 
     public function __construct(
-        CartService $cartService,
+        CartService            $cartService,
         EntityManagerInterface $entityManager,
-    ) {
+    )
+    {
         $this->cartService = $cartService;
         $this->entityManager = $entityManager;
     }
@@ -29,6 +34,18 @@ class OrderController extends AbstractController
     public function create(Request $request): Response
     {
         $user = $this->getUser();
+        if ($user === null) {
+            $user = new User();
+            $user->setName($request->request->get('name'));
+            $user->setEmail($request->request->get('email'));
+            $user->setPassword(md5(rand(0, 1000)));
+            $this->entityManager->persist($user);
+            try {
+                $this->entityManager->flush();
+            } catch (Exception) {
+                return new RedirectResponse('/cart?error-register=1');
+            }
+        }
         $cart = $this->cartService->getCart();
 
         $order = new Order($user);
@@ -47,7 +64,7 @@ class OrderController extends AbstractController
         }
 
         $this->entityManager->flush();
-
+        $this->cartService->clearCart();
         return new RedirectResponse('/');
     }
 }

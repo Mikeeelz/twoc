@@ -61,6 +61,11 @@
         <div class="col-sm-6">
           <div class="shopper-info">
             <form action="/order/create" method="post">
+              {% if errorRegister %}
+              <div class="row text-center">
+                Ошибка при оформлении заказа
+              </div>
+              {% endif %}
               {% if app.user is null %}
                 <input name="name" type="text" placeholder="Имя">
                 <input name="email" type="text" placeholder="Почта">
